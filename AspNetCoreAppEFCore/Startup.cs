@@ -1,9 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using AspNetCoreAppEFCore.BusinessLogic;
+using AspNetCoreAppEFCore.Data;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -23,7 +22,18 @@ namespace AspNetCoreAppEFCore
         {
             // Angular's default header name for sending the XSRF token.
             services.AddAntiforgery(options => options.HeaderName = "X-XSRF-TOKEN");
+
+            // To register DataContext as a service
+            services.AddDbContext<DataContext>(options =>
+                options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+
             services.AddMvc();
+
+            services.AddScoped<IDataMapper, DataMapper>();
+            services.AddScoped<IDataReader, DataReader>();
+            services.AddScoped<IDataPersister, DbDataPersister>();
+            services.AddScoped<IDataPersister, JsonDataPersister>();
+            services.AddScoped<IDataProcessor, DataProcessor>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

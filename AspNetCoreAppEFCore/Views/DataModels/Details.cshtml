@@ -1,0 +1,84 @@
+﻿@model AspNetCoreAppEFCore.Models.DataModel
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>DataModel</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Key)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Key)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.ArticleCode)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ArticleCode)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.ColorCode)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ColorCode)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Description)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Description)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Price)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Price)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.DiscountPrice)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.DiscountPrice)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.DeliveredIn)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.DeliveredIn)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Q1)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Q1)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Size)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Size)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Color)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Color)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.FileId)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.FileId)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>

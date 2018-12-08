@@ -6,5 +6,6 @@ namespace AspNetCoreAppEFCore.Models
     {
         public Guid FileId { get; set; }
         public string FilePath { get; set; }
+        public DateTime Timestamp { get; set; }
     }
 }

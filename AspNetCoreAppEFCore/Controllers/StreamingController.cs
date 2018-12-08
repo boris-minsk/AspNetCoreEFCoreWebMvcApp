@@ -3,6 +3,7 @@ using System.Globalization;
 using System.IO;
 using System.Text;
 using System.Threading.Tasks;
+using AspNetCoreAppEFCore.BusinessLogic;
 using AspNetCoreAppEFCore.Filters;
 using AspNetCoreAppEFCore.Models;
 using Microsoft.AspNetCore.Http;
@@ -19,14 +20,16 @@ namespace AspNetCoreAppEFCore.Controllers
     public class StreamingController : Controller
     {
         private readonly ILogger<StreamingController> _logger;
+        private readonly IDataProcessor _processor;
 
         // Get the default form options so that we can use them to set the default limits for
         // request body data
         private static readonly FormOptions DefaultFormOptions = new FormOptions();
 
-        public StreamingController(ILogger<StreamingController> logger)
+        public StreamingController(ILogger<StreamingController> logger, IDataProcessor processor)
         {
             _logger = logger;
+            _processor = processor;
         }
 
         [HttpGet]
@@ -134,13 +137,13 @@ namespace AspNetCoreAppEFCore.Controllers
             var uploadedData = new UploadedData()
             {
                 FileId = Guid.NewGuid(),
-                FilePath = targetFilePath
+                FilePath = targetFilePath,
+                Timestamp = DateTime.UtcNow
             };
 
             //string result= JsonConvert.SerializeObject(uploadedData);
 
-            //SaveAsDb(FilePath);
-            //SaveAsJsonFile(FilePath);
+            _processor.Process(uploadedData);
             //return Json(uploadedData);
             return Ok(new { fileId = uploadedData.FileId, filePath = uploadedData.FilePath });
         }

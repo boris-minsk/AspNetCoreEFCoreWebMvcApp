@@ -4,6 +4,7 @@ namespace AspNetCoreAppEFCore.Models
 {
     public class DataModel
     {
+        public int Id { get; set; }
         public string Key { get; set; }
         public int ArticleCode { get; set; }
         public string ColorCode { get; set; }
