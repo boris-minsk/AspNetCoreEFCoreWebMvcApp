@@ -6,8 +6,7 @@ using AspNetCoreAppEFCore.Models;
 
 namespace AspNetCoreAppEFCore.BusinessLogic
 {
-    public interface IDataProcessor
+    public interface IJsonPersister : IDataPersister
     {
-        bool Process(UploadedData data);
     }
 }

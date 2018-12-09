@@ -8,6 +8,6 @@ namespace AspNetCoreAppEFCore.BusinessLogic
 {
     public interface IDataPersister
     {
-        void Persist(DataModel data);
+        bool Save(DataModel data);
     }
 }

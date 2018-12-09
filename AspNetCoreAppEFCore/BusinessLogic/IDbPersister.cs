@@ -6,10 +6,6 @@ using AspNetCoreAppEFCore.Models;
 
 namespace AspNetCoreAppEFCore.BusinessLogic
 {
-    public class DbDataPersister : IDataPersister
-    {
-        public void Persist(DataModel data)
-        {
-        }
-    }
+    public interface IDbPersister : IDataPersister
+    { }
 }

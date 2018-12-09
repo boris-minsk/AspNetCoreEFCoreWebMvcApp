@@ -6,11 +6,11 @@ using AspNetCoreAppEFCore.Models;
 
 namespace AspNetCoreAppEFCore.BusinessLogic
 {
-    public class JsonDataPersister : IDataPersister
+    public class DbPersister : IDbPersister
     {
-        public void Persist(DataModel data)
+        public bool Save(DataModel data)
         {
-            //string result= JsonConvert.SerializeObject(data);
+            return true;
         }
     }
 }

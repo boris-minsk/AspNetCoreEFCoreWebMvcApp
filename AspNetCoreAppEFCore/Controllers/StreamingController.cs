@@ -141,11 +141,12 @@ namespace AspNetCoreAppEFCore.Controllers
                 Timestamp = DateTime.UtcNow
             };
 
-            //string result= JsonConvert.SerializeObject(uploadedData);
+            if (_processor.Process(uploadedData))
+            {
+                return Ok(new { fileId = uploadedData.FileId, filePath = uploadedData.FilePath });
+            }
 
-            _processor.Process(uploadedData);
-            //return Json(uploadedData);
-            return Ok(new { fileId = uploadedData.FileId, filePath = uploadedData.FilePath });
+            return BadRequest();
         }
         #endregion
 

@@ -31,8 +31,9 @@ namespace AspNetCoreAppEFCore
 
             services.AddScoped<IDataMapper, DataMapper>();
             services.AddScoped<IDataReader, DataReader>();
-            services.AddScoped<IDataPersister, DbDataPersister>();
-            services.AddScoped<IDataPersister, JsonDataPersister>();
+            services.AddScoped<IDataPersister, DataPersister>();
+            services.AddScoped<IJsonPersister, JsonPersister>();
+            services.AddScoped<IDbPersister, DbPersister>();
             services.AddScoped<IDataProcessor, DataProcessor>();
         }
 

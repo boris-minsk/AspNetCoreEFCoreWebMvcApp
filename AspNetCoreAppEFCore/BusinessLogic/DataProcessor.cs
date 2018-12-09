@@ -10,20 +10,35 @@ namespace AspNetCoreAppEFCore.BusinessLogic
     {
         private readonly IDataReader _reader;
         private readonly IDataMapper _mapper;
-        private readonly IDataPersister _dbPersister;
-        private readonly IDataPersister _jsonPersister;
+        private readonly IDataPersister _dataPersister;
 
-        public DataProcessor(IDataReader reader, IDataMapper mapper, IDataPersister dbPersister, IDataPersister jsonPersister)
+        public DataProcessor(IDataReader reader, IDataMapper mapper, IDataPersister dataPersister)
         {
             _reader = reader;
             _mapper = mapper;
-            _dbPersister = dbPersister;
-            _jsonPersister = jsonPersister;
+            _dataPersister = dataPersister;
         }
 
-        public void Process(UploadedData data)
+        public bool Process(UploadedData data)
         {
+            var lines = _reader.ReadLines(data.FilePath).ToArray();
 
+            var models = new List<DataModel>();
+            foreach (var line in lines)
+            {
+                models.Add(_mapper.MapLine(line));
+            }
+
+            bool success = true;
+            foreach (var model in models)
+            {
+                if (!_dataPersister.Save(model))
+                {
+                    success = false;
+                }
+            }
+
+            return success;
         }
     }
 }
