@@ -1,0 +1,19 @@
+﻿@using AspNetCoreAppEFCore.Models
+@model JsonFile
+@{
+    ViewData["Title"] = "Index";
+}
+<h1>Json File</h1>
+<h2>
+    @Html.DisplayNameFor(model => model.Path)
+</h2>
+<div>
+    @Html.DisplayFor(model => model.Path)
+</div>
+
+<h2>
+    @Html.DisplayNameFor(model => model.Body)
+</h2>
+<div>
+    @Html.DisplayFor(model => model.Body)
+</div>

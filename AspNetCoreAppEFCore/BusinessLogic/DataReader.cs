@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
+using System.Text;
 
 namespace AspNetCoreAppEFCore.BusinessLogic
 {
@@ -21,6 +23,17 @@ namespace AspNetCoreAppEFCore.BusinessLogic
                     }
                 }
             }
+        }
+
+        public string ReadFile(string filePath)
+        {
+            string[] readText = ReadLines(filePath).ToArray();
+            StringBuilder builder = new StringBuilder();
+            foreach (string s in readText)
+            {
+                builder.Append(s);
+            }
+            return builder.ToString();
         }
     }
 }

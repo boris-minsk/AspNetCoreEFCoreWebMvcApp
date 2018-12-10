@@ -61,6 +61,7 @@ namespace AspNetCoreAppEFCore.Controllers
             Directory.CreateDirectory(filePath);
 
             var targetFilePath = filePath + @"\" + "test.csv";
+            //string extension = Path.GetExtension(targetFilePath);
             var boundary = MultipartRequestHelper.GetBoundary(
                 MediaTypeHeaderValue.Parse(Request.ContentType),
                 DefaultFormOptions.MultipartBoundaryLengthLimit);
