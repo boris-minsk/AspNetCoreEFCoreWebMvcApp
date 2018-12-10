@@ -1,7 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 using AspNetCoreAppEFCore.Models;
 
 namespace AspNetCoreAppEFCore.BusinessLogic
@@ -26,7 +24,9 @@ namespace AspNetCoreAppEFCore.BusinessLogic
             var models = new List<DataModel>();
             foreach (var line in lines)
             {
-                models.Add(_mapper.MapLine(line));
+                DataModel model = _mapper.MapLine(line);
+                model.FileGuid = data.FileId;
+                models.Add(model);
             }
 
             bool success = true;

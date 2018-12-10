@@ -43,7 +43,7 @@
                     @Html.DisplayNameFor(model => model.Color)
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.FileId)
+                    @Html.DisplayNameFor(model => model.FileGuid)
                 </th>
             <th></th>
         </tr>
@@ -82,7 +82,7 @@
                 @Html.DisplayFor(modelItem => item.Color)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.FileId)
+                @Html.DisplayFor(modelItem => item.FileGuid)
             </td>
             <td>
                 <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |

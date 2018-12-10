@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using AspNetCoreAppEFCore.Models;
+﻿using AspNetCoreAppEFCore.Models;
 using Newtonsoft.Json;
 
 namespace AspNetCoreAppEFCore.BusinessLogic
@@ -11,7 +7,7 @@ namespace AspNetCoreAppEFCore.BusinessLogic
     {
         public bool Save(DataModel data)
         {
-            //return JsonConvert.SerializeObject(data);
+            JsonConvert.SerializeObject(data);
             return true;
         }
     }

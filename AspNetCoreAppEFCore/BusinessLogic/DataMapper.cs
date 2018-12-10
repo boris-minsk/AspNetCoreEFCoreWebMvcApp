@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using AspNetCoreAppEFCore.Models;
+﻿using AspNetCoreAppEFCore.Models;
 
 namespace AspNetCoreAppEFCore.BusinessLogic
 {
@@ -10,7 +6,20 @@ namespace AspNetCoreAppEFCore.BusinessLogic
     {
         public DataModel MapLine(string line)
         {
-            return new DataModel();
+            string[] tokens = line.Split(',');
+            return new DataModel
+            {
+                Key = tokens[0],
+                ArticleCode = tokens[1],
+                ColorCode = tokens[2],
+                Description = tokens[3],
+                Price = tokens[4],
+                DiscountPrice = tokens[5],
+                DeliveredIn = tokens[6],
+                Q1 = tokens[7],
+                Size = tokens[8],
+                Color = tokens[9],
+            };
         }
     }
 }

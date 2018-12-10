@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using AspNetCoreAppEFCore.Data;
 using AspNetCoreAppEFCore.Models;
@@ -54,7 +51,7 @@ namespace AspNetCoreAppEFCore.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Guid,Timestamp,Path")] File file)
+        public async Task<IActionResult> Create([Bind("Id,FileGuid,Timestamp,Path")] File file)
         {
             if (ModelState.IsValid)
             {
@@ -86,7 +83,7 @@ namespace AspNetCoreAppEFCore.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Guid,Timestamp,Path")] File file)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,FileGuid,Timestamp,Path")] File file)
         {
             if (id != file.Id)
             {

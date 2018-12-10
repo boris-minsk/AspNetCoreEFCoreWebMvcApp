@@ -13,7 +13,6 @@ using Microsoft.AspNetCore.Mvc.ModelBinding;
 using Microsoft.AspNetCore.WebUtilities;
 using Microsoft.Extensions.Logging;
 using Microsoft.Net.Http.Headers;
-using Newtonsoft.Json;
 
 namespace AspNetCoreAppEFCore.Controllers
 {
@@ -58,8 +57,10 @@ namespace AspNetCoreAppEFCore.Controllers
 
             // Used to accumulate all the form url encoded key value pairs in the request.
             var formAccumulator = new KeyValueAccumulator();
-            string targetFilePath = null;
+            var filePath = Directory.GetCurrentDirectory() + @"\UploadedFiles";
+            Directory.CreateDirectory(filePath);
 
+            var targetFilePath = filePath + @"\" + "test.csv";
             var boundary = MultipartRequestHelper.GetBoundary(
                 MediaTypeHeaderValue.Parse(Request.ContentType),
                 DefaultFormOptions.MultipartBoundaryLengthLimit);
@@ -74,7 +75,7 @@ namespace AspNetCoreAppEFCore.Controllers
                 {
                     if (MultipartRequestHelper.HasFileContentDisposition(contentDisposition))
                     {
-                        targetFilePath = Path.GetTempFileName();
+                        //targetFilePath =Path.GetTempFileName();
                         using (var targetStream = System.IO.File.Create(targetFilePath))
                         {
                             await section.Body.CopyToAsync(targetStream);
