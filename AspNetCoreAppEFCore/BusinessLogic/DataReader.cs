@@ -13,10 +13,8 @@ namespace AspNetCoreAppEFCore.BusinessLogic
             using (StreamReader sr = new StreamReader(filePath))
             {
                 string currentLine;
-                // currentLine will be null when the StreamReader reaches the end of file
                 while ((currentLine = sr.ReadLine()) != null)
                 {
-                    // Search, case insensitive, if the currentLine contains the searched keyword
                     if (currentLine.IndexOf(Header, StringComparison.CurrentCultureIgnoreCase) < 0)
                     {
                         yield return currentLine;

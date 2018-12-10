@@ -137,17 +137,12 @@ namespace AspNetCoreAppEFCore.Controllers
 
             var uploadedData = new UploadedData()
             {
-                FileId = Guid.NewGuid(),
-                FilePath = targetFilePath,
-                Timestamp = DateTime.UtcNow
+                FilePath = targetFilePath
             };
 
-            if (_processor.Process(uploadedData))
-            {
-                return Ok(new { fileId = uploadedData.FileId, filePath = uploadedData.FilePath });
-            }
-
-            return BadRequest();
+            _processor.Process(uploadedData);
+            
+            return Ok(new { filePath = uploadedData.FilePath });
         }
         #endregion
 

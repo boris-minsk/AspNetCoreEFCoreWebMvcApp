@@ -9,7 +9,6 @@ namespace AspNetCoreAppEFCore.Data
         {
         }
 
-        public DbSet<File> Files { get; set; }
         public DbSet<DataModel> DataModels { get; set; }
     }
 }

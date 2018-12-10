@@ -1,4 +1,4 @@
-﻿using System;
+﻿using System.Collections.Generic;
 using AspNetCoreAppEFCore.Data;
 using AspNetCoreAppEFCore.Models;
 
@@ -13,18 +13,13 @@ namespace AspNetCoreAppEFCore.BusinessLogic
             _context = context;
         }
 
-        public bool Save(DataModel data)
+        public void Save(IEnumerable<DataModel> data)
         {
-            try
+            foreach (var model in data)
             {
-                _context.DataModels.Add(data);
-                _context.SaveChanges();
-                return true;
+                _context.DataModels.Add(model);
             }
-            catch (Exception)
-            {
-                return false;
-            }
+            _context.SaveChanges();
         }
     }
 }

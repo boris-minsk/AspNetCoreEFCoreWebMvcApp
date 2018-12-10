@@ -51,7 +51,7 @@ namespace AspNetCoreAppEFCore.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Key,ArticleCode,ColorCode,Description,Price,DiscountPrice,DeliveredIn,Q1,Size,Color,FileGuid")] DataModel dataModel)
+        public async Task<IActionResult> Create([Bind("Id,Key,ArticleCode,ColorCode,Description,Price,DiscountPrice,DeliveredIn,Q1,Size,Color")] DataModel dataModel)
         {
             if (ModelState.IsValid)
             {
@@ -83,7 +83,7 @@ namespace AspNetCoreAppEFCore.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Key,ArticleCode,ColorCode,Description,Price,DiscountPrice,DeliveredIn,Q1,Size,Color,FileGuid")] DataModel dataModel)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Key,ArticleCode,ColorCode,Description,Price,DiscountPrice,DeliveredIn,Q1,Size,Color")] DataModel dataModel)
         {
             if (id != dataModel.Id)
             {
@@ -103,8 +103,10 @@ namespace AspNetCoreAppEFCore.Controllers
                     {
                         return NotFound();
                     }
-
-                    throw;
+                    else
+                    {
+                        throw;
+                    }
                 }
                 return RedirectToAction(nameof(Index));
             }

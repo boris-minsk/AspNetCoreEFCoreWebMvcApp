@@ -15,7 +15,5 @@ namespace AspNetCoreAppEFCore.Models
         public string Q1 { get; set; }
         public string Size { get; set; }
         public string Color { get; set; }
-        public Guid FileGuid { get; set; }
-        public File File { get; set; }
     }
 }

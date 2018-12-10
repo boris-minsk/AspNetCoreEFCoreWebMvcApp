@@ -1,4 +1,6 @@
-﻿using AspNetCoreAppEFCore.Models;
+﻿using System.Collections.Generic;
+using System.Linq;
+using AspNetCoreAppEFCore.Models;
 
 namespace AspNetCoreAppEFCore.BusinessLogic
 {
@@ -13,9 +15,11 @@ namespace AspNetCoreAppEFCore.BusinessLogic
             _jsonPersister = jsonPersister;
         }
 
-        public bool Save(DataModel data)
+        public void Save(IEnumerable<DataModel> data)
         {
-            return _dbPersister.Save(data) && _jsonPersister.Save(data);
+            var dataModels = data as DataModel[] ?? data.ToArray();
+            _dbPersister.Save(dataModels);
+            _jsonPersister.Save(dataModels);
         }
     }
 }
