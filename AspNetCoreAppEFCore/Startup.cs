@@ -2,6 +2,7 @@
 using AspNetCoreAppEFCore.Data;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http.Features;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -28,6 +29,12 @@ namespace AspNetCoreAppEFCore
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
             services.AddMvc();
+
+            services.Configure<FormOptions>(x =>
+            {
+                x.MultipartBodyLengthLimit = 500000000;
+                x.MultipartBoundaryLengthLimit = 500000000;
+            });
 
             services.AddScoped<IDataMapper, DataMapper>();
             services.AddScoped<IDataReader, DataReader>();

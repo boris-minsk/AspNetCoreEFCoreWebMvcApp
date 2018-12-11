@@ -34,6 +34,10 @@ namespace AspNetCoreAppEFCore
         public static IWebHost BuildWebHost(string[] args) =>
             WebHost.CreateDefaultBuilder(args)
                 .UseStartup<Startup>()
+                .UseKestrel(options =>
+                {
+                    options.Limits.MaxRequestBodySize = 500000000;
+                })
                 .Build();
     }
 }

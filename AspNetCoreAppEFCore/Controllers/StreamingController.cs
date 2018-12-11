@@ -46,6 +46,7 @@ namespace AspNetCoreAppEFCore.Controllers
         //    sent via headers. The anti-forgery token filter first looks for tokens
         //    in the request header and then falls back to reading the body.
         [HttpPost]
+        [RequestSizeLimit(500000000)]
         [DisableFormValueModelBinding]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Upload()
@@ -55,13 +56,13 @@ namespace AspNetCoreAppEFCore.Controllers
                 return BadRequest($"Expected a multipart request, but got {Request.ContentType}");
             }
 
-            // Used to accumulate all the form url encoded key value pairs in the request.
-            var formAccumulator = new KeyValueAccumulator();
             var filePath = Directory.GetCurrentDirectory() + @"\UploadedFiles";
             Directory.CreateDirectory(filePath);
-
             var targetFilePath = filePath + @"\" + "test.csv";
-            //string extension = Path.GetExtension(targetFilePath);
+
+            // Used to accumulate all the form url encoded key value pairs in the request.
+            var formAccumulator = new KeyValueAccumulator();
+
             var boundary = MultipartRequestHelper.GetBoundary(
                 MediaTypeHeaderValue.Parse(Request.ContentType),
                 DefaultFormOptions.MultipartBoundaryLengthLimit);
@@ -142,7 +143,7 @@ namespace AspNetCoreAppEFCore.Controllers
             };
 
             _processor.Process(uploadedData);
-            
+
             return Ok(new { filePath = uploadedData.FilePath });
         }
         #endregion
@@ -151,8 +152,7 @@ namespace AspNetCoreAppEFCore.Controllers
         {
             MediaTypeHeaderValue mediaType;
             var hasMediaTypeHeader = MediaTypeHeaderValue.TryParse(section.ContentType, out mediaType);
-            // UTF-7 is insecure and should not be honored. UTF-8 will succeed in 
-            // most cases.
+            // UTF-7 is insecure and should not be honored. UTF-8 will succeed in most cases.
             if (!hasMediaTypeHeader || Encoding.UTF7.Equals(mediaType.Encoding))
             {
                 return Encoding.UTF8;
