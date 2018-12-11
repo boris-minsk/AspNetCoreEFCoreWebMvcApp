@@ -27,6 +27,8 @@ namespace AspNetCoreAppEFCore.BusinessLogic
 
         public string ReadFile(string filePath)
         {
+            if (!File.Exists(filePath)) return "No file exist";
+
             string[] readText = ReadLines(filePath).ToArray();
             StringBuilder builder = new StringBuilder();
             foreach (string s in readText)

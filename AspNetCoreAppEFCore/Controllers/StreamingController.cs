@@ -46,7 +46,6 @@ namespace AspNetCoreAppEFCore.Controllers
         //    sent via headers. The anti-forgery token filter first looks for tokens
         //    in the request header and then falls back to reading the body.
         [HttpPost]
-        [RequestSizeLimit(500000000)]
         [DisableFormValueModelBinding]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Upload()
@@ -150,8 +149,7 @@ namespace AspNetCoreAppEFCore.Controllers
 
         private static Encoding GetEncoding(MultipartSection section)
         {
-            MediaTypeHeaderValue mediaType;
-            var hasMediaTypeHeader = MediaTypeHeaderValue.TryParse(section.ContentType, out mediaType);
+            var hasMediaTypeHeader = MediaTypeHeaderValue.TryParse(section.ContentType, out var mediaType);
             // UTF-7 is insecure and should not be honored. UTF-8 will succeed in most cases.
             if (!hasMediaTypeHeader || Encoding.UTF7.Equals(mediaType.Encoding))
             {

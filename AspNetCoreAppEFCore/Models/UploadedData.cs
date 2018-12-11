@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace AspNetCoreAppEFCore.Models
+﻿namespace AspNetCoreAppEFCore.Models
 {
     public class UploadedData
     {
